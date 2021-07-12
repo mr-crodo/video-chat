@@ -40,10 +40,33 @@
             <h4 class="card-title m-0 text-center">Your Rooms</h4>
           </div>
           <div class="list-group list-group-flush">
-            <div class="list-group-item d-flex"
-                 v-for="item in rooms"
-                 :key="item.id"
-            >
+            <div class="list-group-item d-flex" v-for="item in rooms" :key="item.id">
+              <section class="btn-group align-self-center" role="group" aria-label="Room Options">
+                <button
+                    class="btn btn-sm btn-outline-secondary"
+                    title="Delete Room"
+                    @click="$emit('deleteRoom', item.id)"
+                >
+                  <font-awesome-icon icon="trash"></font-awesome-icon>
+                </button>
+
+                <router-link
+                    class="btn btn-sm btn-outline-secondary"
+                    title="Check In"
+                    :to="`/checkin/${user.uid}/${item.id}`"
+                >
+                  <font-awesome-icon icon="user"></font-awesome-icon>
+                </router-link>
+
+                <router-link
+                    class="btn btn-sm btn-outline-secondary"
+                    title="Chat"
+                    :to="`/chat/${user.uid}/${item.id}`"
+                >
+                  <font-awesome-icon icon="video"></font-awesome-icon>
+                </router-link>
+              </section>
+
               <section class="pl-3 text-left align-self-center">
                 {{ item.name }}
               </section>
@@ -52,30 +75,27 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </template>
-
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
-  name: "Rooms",
-  data: function () {
+  name: 'Rooms',
+  data: function() {
     return {
       roomName: null
     }
   },
+  components: {
+    FontAwesomeIcon
+  },
   methods: {
-    handleAdd: function () {
+    handleAdd: function() {
       this.$emit('addRoom', this.roomName)
       this.roomName = null
       this.$refs.roomName.focus()
-    },
+    }
   },
-  props: ['rooms']
+  props: ['rooms', 'user']
 }
 </script>
-
-<style scoped>
-
-</style>

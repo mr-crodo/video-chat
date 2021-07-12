@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBL9BGIJE6P7k9TRFXcvJ5JFP2LE2-Nt-I",
     authDomain: "video-chat-3a9d7.firebaseapp.com",
     projectId: "video-chat-3a9d7",

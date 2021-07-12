@@ -13,24 +13,24 @@
                   </div>
                   <label class="form-control-label sr-only" for="Email">Email</label>
                   <input
-                    required
-                    class="form-control mb-3"
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    v-model="email"
+                      required
+                      class="form-control"
+                      type="email"
+                      id="email"
+                      placeholder="Email"
+                      v-model="email"
                   />
                 </section>
                 <section class="form-group">
                   <input
-                    required
-                    class="form-control"
-                    type="password"
-                    placeholder="Password"
-                    v-model="password"
+                      required
+                      class="form-control"
+                      type="password"
+                      placeholder="Password"
+                      v-model="password"
                   />
                 </section>
-                <div class="form-group text-right mt-3">
+                <div class="form-group text-right mb-0">
                   <button class="btn btn-primary" type="submit">Log in</button>
                 </div>
               </div>
@@ -41,16 +41,14 @@
     </form>
     <p class="text-center mt-2">
       or
-      <router-link to="/register">Register</router-link>
+      <router-link to="/register">register</router-link>
     </p>
   </div>
-
 </template>
-
 <script>
-import Firebase from 'firebase';
+import Firebase from 'firebase'
 export default {
-  data: function () {
+  data: function() {
     return {
       email: null,
       password: null,
@@ -58,24 +56,22 @@ export default {
     }
   },
   methods: {
-    login: function () {
+    login: function() {
       const info = {
         email: this.email,
         password: this.password
       }
-
       Firebase.auth()
-      .signInWithEmailAndPassword(info.email, info.password)
-      .then(
-          () => {
-            this.$router.push('/')
-          },
-          error => {
-            this.error = error.message
-          }
-      )
+          .signInWithEmailAndPassword(info.email, info.password)
+          .then(
+              () => {
+                this.$router.push('/rooms')
+              },
+              error => {
+                this.error = error.message
+              }
+          )
     }
   }
 }
-
 </script>
